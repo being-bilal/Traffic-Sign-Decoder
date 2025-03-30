@@ -4,3 +4,4 @@ Test/
 data/
 *.csv
 *.zip
+*.pkl
