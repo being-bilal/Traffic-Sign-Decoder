@@ -2,6 +2,8 @@ import os
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
+from skimage.feature import hog
+
 
 os.environ["QT_QPA_PLATFORM"] = "xcb"  # using X11 instead of Wayland in CV2
 
@@ -29,47 +31,17 @@ def preprocess_image(path, size=(64, 64)):
     mask_rgb = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
     blurred_image = cv2.GaussianBlur(original_image, (5, 5), 0)
     final_image = np.where(mask_rgb == (255, 255, 255), original_image, blurred_image)
-    final_image = cv2.cvtColor(final_image, cv2.COLOR_BGR2RGB)
-    
+
     # adjusting the contrast
     brightness = 4
     contrast = 1.4
     final_image = cv2.addWeighted(final_image, contrast, np.zeros(final_image.shape, final_image.dtype), 0, brightness) 
-
+    
+    # Convert color image to grayscale and extract HOG features
+    gray = cv2.cvtColor(final_image, cv2.COLOR_BGR2GRAY)  
+    final_image = hog(gray, pixels_per_cell=(8, 8), cells_per_block=(2, 2), feature_vector=True)
+    
     # Normalize pixel values
     final_image = final_image / 255.0
-
-    # Add batch dimension
-    final_image = np.expand_dims(final_image, axis=0)
-
-    return original_image, final_image
-"""
-# Testing multiple images
-image_paths = [
-    "dataset/Train/14/00014_00001_00026.png",
-    "dataset/Train/3/00003_00002_00015.png",
-    "dataset/Train/16/00016_00000_00005.png",
-    "dataset/Train/10/00010_00022_00019.png",
-    "dataset/Train/28/00028_00014_00026.png"
-]
-
-fig, axes = plt.subplots(len(image_paths), 2, figsize=(10, 3 * len(image_paths)))
-
-for i, path in enumerate(image_paths):
-    original, processed_image = preprocess_image(path)
-
-    # Display original image
-    axes[i, 0].imshow(cv2.cvtColor(original, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB
-    axes[i, 0].axis("off")
-    axes[i, 0].set_title(f"Original Image {i+1}")
-
-    # Display processed image
-    axes[i, 1].imshow(processed_image[0])  # Remove batch dimension for display
-    axes[i, 1].axis("off")
-    axes[i, 1].set_title(f"Processed Image {i+1}")
-
-    print(f"Processed Image {i+1} shape : {processed_image.shape}")
-
-plt.tight_layout()
-plt.show()
-"""
+    
+    return final_image
