@@ -36,5 +36,5 @@ labels = np.array(labels)
 X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=42, stratify=labels, shuffle=True)
 
 # Checking the split
-print(f"Percentage of train data : {(len(X_train)/len(data)) * 100}")
-print(f"Percentage of test data : {(len(X_test)/len(data)) * 100}")
+#print(f"Percentage of train data : {(len(X_train)/len(data)) * 100}")
+#print(f"Percentage of test data : {(len(X_test)/len(data)) * 100}")
