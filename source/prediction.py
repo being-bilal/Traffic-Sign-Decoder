@@ -5,27 +5,22 @@ import json
 from preprocessing import preprocess_image 
 import matplotlib.pyplot as plt
 
-# Load the trained model
+
 rf_model = joblib.load("assets/traffic_sign_rf_model.pkl")
 
-# Load the class mapping
 with open("assets/mapping.json", "r") as f:
     class_labels = json.load(f)
-
-# Path to the test image (Change this to your image path)
+    
 image_path = "dataset/Test/00044.png"
 
-
-# Preprocess the image
+# Preprocessing the image
 processed_img = preprocess_image(image_path)
 
-# Reshape if necessary (if model expects 2D input)
+# Reshaping (model expects 2D input)
 processed_img = processed_img.reshape(1, -1)
 
-# Predict the class
 predicted_class = rf_model.predict(processed_img)[0]
 
-# Get the sign name from mapping
 sign_name = class_labels.get(str(predicted_class), "Unknown Sign")
 
 # Print the result

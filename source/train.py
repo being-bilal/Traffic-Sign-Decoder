@@ -4,7 +4,7 @@ import pandas as pd
 import os
 import joblib
 from sklearn.ensemble import RandomForestClassifier
-from preprocessing import preprocess_image  # Your preprocessing function
+from preprocessing import preprocess_image  
 
 # Load training data
 train_csv = "assets/Train.csv"  # Path to CSV
@@ -41,4 +41,4 @@ joblib.dump(model, "assets/traffic_sign_rf_model.pkl", compress=3)
 joblib.dump(X_train, "assets/X_train.pkl", compress=3)
 joblib.dump(y_train, "assets/y_train.pkl", compress=3)
 
-print("✅ Model Training Complete!")
+print("Model Training Complete!")
