@@ -29,7 +29,7 @@ with open("assets/mapping.json", "r") as f:
     class_labels = json.load(f)
 
 # Create label names using the mapping
-sign_names = [class_labels.get(str(i), f"Class {i}") for i in range(len(class_names))]
+
 
 # Bar plot
 x = np.arange(len(class_names))
@@ -44,7 +44,7 @@ plt.bar(x + width/2, [val_class_counts.get(i, 0) for i in range(len(class_names)
 plt.xlabel("Class")
 plt.ylabel("Number of Images")
 plt.title("Class Distribution in Train and Validation Sets")
-plt.xticks(x, sign_names, rotation=90)
+plt.xticks(x, class_names, rotation=90)
 plt.legend()
 plt.tight_layout()
 plt.show()

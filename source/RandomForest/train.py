@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestClassifier
 from preprocessing import preprocess_image  
 
 # Load training data
-train_csv = "assets/Train.csv"  # Path to CSV
-train_folder = "dataset"  # Folder with images
+train_csv = "assets/Train.csv" 
+train_folder = "dataset" 
 
 df = pd.read_csv(train_csv)
 

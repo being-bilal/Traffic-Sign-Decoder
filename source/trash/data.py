@@ -2,7 +2,7 @@ import os
 import numpy as np
 import cv2
 from sklearn.model_selection import train_test_split
-from preprocessing import preprocess_image
+from source.RandomForest.preprocessing import preprocess_image
 
 # Set dataset directory
 dataset_path = "dataset/test"  

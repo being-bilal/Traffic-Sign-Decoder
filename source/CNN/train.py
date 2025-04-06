@@ -94,7 +94,7 @@ val_loss = cnn_model.history['val_loss']
 
 class_indices = train_generator.class_indices
 
-model.save("cnn_model.keras", save_format="keras")
+model.save("assets/cnn_model.keras", save_format="keras")
 
 # Saving the data
 with open("class_indices.json", "w") as f:
