@@ -11,7 +11,7 @@ rf_model = joblib.load("assets/traffic_sign_rf_model.pkl")
 with open("assets/mapping.json", "r") as f:
     class_labels = json.load(f)
     
-image_path = "dataset/Test/00044.png"
+image_path = "dataset/Train/5/00005_00010_00010.png"
 
 # Preprocessing the image
 processed_img = preprocess_image(image_path)
@@ -47,3 +47,4 @@ plt.axis("off")
 
 plt.suptitle(f"Predicted Sign: {sign_name}", fontsize=14, fontweight="bold")
 plt.show()
+

@@ -34,7 +34,7 @@ labels = np.array(labels)
 # Split into training (80%) and testing (20%)
 # random_state=42 : ensures the dataset is split the same way every time such that The train & test labels will remain the same across multiple runs (42 is just a convention)
 # stratify=label : ensures the dataset is split proportional to the labels. the class ratio (4:1) is preserved for every label for test and training 
-#X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=42, stratify=labels, shuffle=True)
+#X_train, X_st, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=42, stratify=labels, shuffle=True)
 
 # Checking the split
 #print(f"Percentage of train data : {(len(X_train)/len(data)) * 100}")
